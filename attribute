@@ -1,0 +1,47 @@
+**********Attributes********************
+
+step-1 ohai
+
+step-2 ohai ipaddress,ohai hostname, ohai memory/all,
+
+step-3 ls
+
+step-4 cd apache-cookbook
+
+step-5 chef generate recipe recipe-new
+
+step-6 cd ..
+
+step-7 vi apache-cookbook/recipes/recipe-new.rb
+
+step-8 copy attributes content
+
+step-9 chef-client -zr "recipe[apache-cookbook::recipe-new]"
+
+step-10 chef exec ruby -c apache-cookbook/recipes/recipe-new.rb
+
+step-11 chef-client -zr "recipe[apache-cookbook::recipe-new]"
+
+step-12 ls /
+
+step-13 cat /basicinfo
+
+End
+
+
+
+****************************************************END**************************************************
+
+
+
+file '/basicinfo' do
+ content "This is to get Attributes
+ HOSTNAME: #{node['hostname']}
+ IPADDRESS: #{node['ipaddress']}
+ CPU: #{node['cpu']['0']['mhz']}
+ MEMORY: #{node['memory']['total']}"
+ owner 'root'
+ group 'root'
+action :create
+end
+***********************************************
